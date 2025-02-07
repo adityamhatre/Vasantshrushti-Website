@@ -127,7 +127,7 @@
                     <p>
                         Escape the hustle bustle of the town, Vasantshrushti is located in the heart of the nature.
                         <br>
-                        <br>**Approved by MTDC's Bed and Breakfast scheme**
+                        <br>**Approved under Agro Tourism Centre by State Govt of Maharashtra vide Kokan/37/24/2021 dt. 28.7.2021**
                     </p>
                     <!-- <p><a href="#" class="probootstrap-custom-link">About Us</a></p> -->
                 </div>
@@ -224,6 +224,11 @@
             </div>
         </div>
     </section>
+
+    <div class="row text-center">
+        <video id="video1" src="vid/video1.mp4" height="800" controls="" muted="" playsinline=""></video>
+    </div>
+
     <section class="probootstrap-section-bg overlay" style="background-image: url(img/rates.jpg);" data-stellar-background-ratio="0.5" data-section="menu">
         <div class="container">
             <div class="row">
@@ -251,11 +256,10 @@
 
 <br>
 <h2><u>Bank Details</u></h2>
-<h3>Vasantshrushti Garden Resort <br>
-Current A/C No.: 009110100002999 <br>
-IFSC No.: BACB 0000009 <br>
-Bank: Bassein Catholic Co-Op Bank Ltd. <br>
-Umrale Branch, Nallasopara West - 401203</h3>
+<h3>Vasantshrushti Krushi Parytan Kendra<br>
+Current A/C No.: 305805001289<br>
+IFSC No.: ICIC0003058<br>
+Bank: ICICI Bank</h3>
 </center>
             </div>
         </div>
@@ -437,6 +441,24 @@ Umrale Branch, Nallasopara West - 401203</h3>
     <script src="js/custom.min.js"></script>
     <script>
         document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let video = document.getElementById("video1");
+
+            let observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.muted = true; // Ensure it's muted for autoplay
+                        video.play().catch(error => console.log("Autoplay failed:", error));
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.5 }); // Play when 50% visible
+
+            observer.observe(video);
+        });
     </script>
 </body>
 
