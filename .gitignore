@@ -1,0 +1,31 @@
+# Firebase
+.firebase/
+firebase-debug.log
+*.log
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment / Secret Files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor / OS junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Large binaries (optional: remove if you WANT the apk in git)
+# *.apk
+# *.apk1
