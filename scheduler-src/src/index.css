@@ -1,0 +1,419 @@
+@import "tailwindcss";
+
+:root {
+  --accent-50: #f0f7ff;
+  --accent-100: #e0f0ff;
+  --accent-200: #b3d7ff;
+  --accent-300: #80beff;
+  --accent-400: #4da3ff;
+  --accent-500: #0a84ff;
+  --accent-600: #0066d6;
+  --accent-700: #0052ad;
+  --accent-800: #003f85;
+  --accent-900: #002b5c;
+  --accent-950: #001733;
+}
+
+@theme {
+  --color-purple-50: var(--accent-50);
+  --color-purple-100: var(--accent-100);
+  --color-purple-200: var(--accent-200);
+  --color-purple-300: var(--accent-300);
+  --color-purple-400: var(--accent-400);
+  --color-purple-500: var(--accent-500);
+  --color-purple-600: var(--accent-600);
+  --color-purple-700: var(--accent-700);
+  --color-purple-800: var(--accent-800);
+  --color-purple-900: var(--accent-900);
+  --color-purple-950: var(--accent-950);
+}
+
+@layer base {
+  body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    height: 100svh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #0f1014;
+    color: #f3f4f6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2e303a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f4252;
+}
+
+/* Cupertino UI transitions & platform specific styles */
+.theme-ios {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --apple-blue: #0a84ff;
+  --apple-green: #0a84ff;
+  --apple-bg: #000000;
+  --apple-secondary-bg: #1c1c1e;
+  --apple-tertiary-bg: #2c2c2e;
+  --apple-border: rgba(255, 255, 255, 0.12);
+}/* Apple Specific Layout, Colors & Typography */
+.theme-ios .bg-\[\#0b0c10\],
+.theme-ios .bg-\[\#0f1014\],
+.theme-ios .bg-\[\#16171d\],
+.theme-ios .bg-\[\#090a0f\],
+.theme-ios .bg-\[\#0a0b0f\] {
+  background-color: rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+/* Side panel, Forms and Cards (Vision Glass Design) */
+.theme-ios .bg-\[\#12131a\],
+.theme-ios .bg-\[\#111217\],
+.theme-ios .bg-\[\#171821\] {
+  background: rgba(22, 22, 24, 0.5) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.theme-ios .border-\[\#1f2028\],
+.theme-ios .border-\[\#2e303a\],
+.theme-ios .border-\[\#16171d\],
+.theme-ios .border-purple-500\/20,
+.theme-ios .border-purple-500\/40 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+/* Apple iOS Segmented Control / Active States */
+.theme-ios .bg-purple-600 {
+  background-color: var(--apple-blue) !important;
+}
+
+.theme-ios .text-purple-400,
+.theme-ios .text-purple-300,
+.theme-ios .text-purple-600 {
+  color: var(--apple-blue) !important;
+}
+
+.theme-ios .border-purple-500,
+.theme-ios .focus\:border-purple-500:focus,
+.theme-ios .focus\:ring-purple-500:focus {
+  border-color: var(--apple-blue) !important;
+  --tw-ring-color: var(--apple-blue) !important;
+}
+
+/* iOS active card states */
+.theme-ios .bg-purple-950\/20 {
+  background-color: color-mix(in srgb, var(--apple-blue) 12%, transparent) !important;
+  border-color: color-mix(in srgb, var(--apple-blue) 50%, transparent) !important;
+}
+
+.theme-ios .bg-purple-950\/40 {
+  background-color: color-mix(in srgb, var(--apple-blue) 20%, transparent) !important;
+  border-color: color-mix(in srgb, var(--apple-blue) 30%, transparent) !important;
+}
+
+/* Rounded elements squircle corners */
+.theme-ios .rounded-2xl,
+.theme-ios .rounded-xl,
+.theme-ios .rounded-3xl {
+  border-radius: 12px !important;
+}
+
+.theme-ios .rounded-full {
+  border-radius: 9999px !important;
+}
+
+/* Translucent Apple Blur Header */
+.theme-ios header,
+.theme-ios .sticky {
+  background: rgba(28, 28, 30, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 0.5px solid var(--apple-border) !important;
+}
+
+/* iOS Native Segmented Control Switcher */
+.theme-ios header .hidden.sm\:flex {
+  background-color: rgba(120, 120, 128, 0.24) !important;
+  border: none !important;
+  border-radius: 9px !important;
+  padding: 2px !important;
+}
+
+.theme-light.theme-ios header .hidden.sm\:flex {
+  background-color: rgba(120, 120, 128, 0.12) !important;
+}
+
+/* Active Segment */
+.theme-ios header .hidden.sm\:flex button.bg-purple-600 {
+  background-color: #636366 !important;
+  color: #ffffff !important;
+  border-radius: 7px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
+}
+
+.theme-light.theme-ios header .hidden.sm\:flex button.bg-purple-600 {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.1) !important;
+}
+
+/* Muted buttons */
+.theme-ios header .hidden.sm\:flex button:not(.bg-purple-600) {
+  color: #9ca3af !important;
+}
+
+.theme-light.theme-ios header .hidden.sm\:flex button:not(.bg-purple-600) {
+  color: #555558 !important;
+}
+
+/* iOS Grouped Form Section Headers */
+.theme-ios h3.uppercase {
+  color: rgba(235, 235, 245, 0.6) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.3px !important;
+}
+
+.theme-light.theme-ios h3.uppercase {
+  color: rgba(60, 60, 67, 0.6) !important;
+}
+
+/* Checkbox -> iOS green switch check design */
+.theme-ios input[type="checkbox"] {
+  border-radius: 50% !important;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.theme-ios input[type="checkbox"]:checked {
+  background-color: var(--apple-green) !important;
+  border-color: var(--apple-green) !important;
+}
+
+.theme-ios input[type="checkbox"]:checked::after {
+  content: "";
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-bottom: 2px;
+}
+
+/* Calendar month items & date grids */
+.theme-ios .bg-purple-600\/20 {
+  background-color: color-mix(in srgb, var(--apple-blue) 15%, transparent) !important;
+  color: var(--apple-blue) !important;
+  border-color: var(--apple-blue) !important;
+}
+
+.theme-ios .bg-purple-500\/10 {
+  background-color: color-mix(in srgb, var(--apple-blue) 8%, transparent) !important;
+  color: var(--apple-blue) !important;
+}
+
+/* Form Inputs */
+.theme-ios input[type="text"],
+.theme-ios input[type="number"],
+.theme-ios input[type="tel"],
+.theme-ios select,
+.theme-ios textarea {
+  background-color: var(--apple-tertiary-bg) !important;
+  border: 0.5px solid var(--apple-border) !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  color: #ffffff !important;
+}
+
+.theme-ios input:focus,
+.theme-ios select:focus,
+.theme-ios textarea:focus {
+  border-color: var(--apple-blue) !important;
+  box-shadow: 0 0 0 1px var(--apple-blue) !important;
+}
+
+/* Modals & Dialogs (Cupertino Sheet Style) */
+.theme-ios .fixed.inset-0.z-50.flex.items-center.justify-center {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.theme-ios .fixed.inset-0.z-50.flex.items-center.justify-center > div {
+  background: rgba(30, 30, 32, 0.75) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6) !important;
+}
+.theme-android {
+  font-family: Roboto, "Product Sans", "Segoe UI", sans-serif;
+}
+
+.theme-web {
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* Safe Area adjustments for iOS Safari stand-alone PWA */
+.safe-padding-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.safe-padding-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.safe-margin-bottom {
+  margin-bottom: env(safe-area-inset-bottom, 0px);
+}
+/* LIGHT MODE STYLING OVERRIDES */
+.theme-light {
+  --accent-50: #f0f7ff;
+  --accent-100: #e0f0ff;
+  --accent-200: #b3d7ff;
+  --accent-300: #80beff;
+  --accent-400: #4da3ff;
+  --accent-500: #007aff;
+  --accent-600: #0066d6;
+  --accent-700: #0052ad;
+  --accent-800: #003f85;
+  --accent-900: #002b5c;
+  --accent-950: #001733;
+
+  color: #1f2937 !important; /* text-gray-800 */
+}
+
+/* Base Body background transitions */
+.theme-light.theme-web,
+.theme-light.theme-web body {
+  background-color: #f3f4f6 !important;
+  color: #1f2937 !important;
+}
+
+.theme-light.theme-ios {
+  background-color: #f2f2f7 !important;
+  --apple-blue: #007aff;
+  --apple-green: #007aff;
+}
+
+.theme-light.theme-android {
+  background-color: #fafafa !important;
+}
+
+/* Header & Panels */
+.theme-light header,
+.theme-light .sticky {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: #e5e7eb !important;
+  color: #1f2937 !important;
+}
+
+/* Text overrides */
+.theme-light .text-white,
+.theme-light h1,
+.theme-light h2,
+.theme-light h3,
+.theme-light span.text-white {
+  color: #111827 !important; /* text-gray-900 */
+}
+
+.theme-light .text-\[\#9ca3af\],
+.theme-light .text-gray-400 {
+  color: #4b5563 !important; /* text-gray-600 */
+}
+
+/* Forms & Cards background */
+.theme-light .bg-\[\#12131a\],
+.theme-light .bg-\[\#111217\],
+.theme-light .bg-\[\#171821\],
+.theme-light .bg-\[\#12131a\]\/40,
+.theme-light .bg-black {
+  background-color: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+
+.theme-light .bg-\[\#0f1014\],
+.theme-light .bg-\[\#0a0b0f\],
+.theme-light .bg-\[\#090a0f\] {
+  background-color: #f9fafb !important;
+}
+
+/* Inputs styling */
+.theme-light input[type="text"],
+.theme-light input[type="number"],
+.theme-light input[type="tel"],
+.theme-light select,
+.theme-light textarea {
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  color: #111827 !important;
+}
+
+/* Borders */
+.theme-light .border-\[\#1f2028\],
+.theme-light .border-\[\#2e303a\],
+.theme-light .border-\[\#16171d\] {
+  border-color: #e5e7eb !important;
+}
+
+/* Day hover states & date items */
+.theme-light .hover\:bg-\[\#1f2028\]:hover,
+.theme-light .hover\:bg-\[\#1a1c26\]\/40:hover {
+  background-color: #f3f4f6 !important;
+}
+
+.theme-light .text-\[\#d1d5db\] {
+  color: #374151 !important; /* text-gray-700 */
+}
+
+.theme-light .bg-\[\#1f2028\] {
+  background-color: #e5e7eb !important;
+  color: #4b5563 !important;
+}
+
+.theme-light .text-purple-300 {
+  color: #0052ad !important; /* dark blue text for readability */
+}
+
+.theme-light .bg-purple-950\/20,
+.theme-light .bg-purple-950\/30,
+.theme-light .bg-purple-950\/40 {
+  background-color: #f0f7ff !important; /* light blue background tint */
+}
+
+/* Cupertino Light Mode Glass Presentation Sheets */
+.theme-light.theme-ios .fixed.inset-0.z-50.flex.items-center.justify-center > div {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  border: 0.5px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15) !important;
+}
+
+.theme-light.theme-ios .bg-\[\#12131a\],
+.theme-light.theme-ios .bg-\[\#111217\],
+.theme-light.theme-ios .bg-\[\#171821\] {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  border: 0.5px solid rgba(0, 0, 0, 0.06) !important;
+}

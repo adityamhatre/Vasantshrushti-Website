@@ -16,6 +16,12 @@
           }
         ]
       }
+    ],
+    "rewrites": [
+      {
+        "source": "/scheduler/**",
+        "destination": "/scheduler/index.html"
+      }
     ]
   }
 }

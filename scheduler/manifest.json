@@ -1,0 +1,16 @@
+{
+  "name": "Vasantshrushti Farm Booking Scheduler",
+  "short_name": "VS Booking",
+  "start_url": "/scheduler/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f1014",
+  "theme_color": "#12131a",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}
