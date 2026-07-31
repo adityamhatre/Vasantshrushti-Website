@@ -1,4 +1,4 @@
-import { type BookingDetails, Accommodation, ACCOMMODATION_CALENDARS } from "../types";
+import { type BookingDetails, Accommodation, ACCOMMODATION_CALENDARS, getApprovedPersonName, ApprovedPerson } from "../types";
 import { authService } from "./authService";
 import { renderService } from "./renderService";
 
@@ -251,7 +251,7 @@ export const calendarService = {
                   : parsed.checkOut || toHumanDate(event.end.dateTime || event.end.date),
               bookingMainPerson: parsed.bookingMainPerson || event.summary || "Guest",
               totalNumberOfPeople: parseInt(parsed.totalNumberOfPeople, 10) || 1,
-              bookedBy: parsed.bookedBy || "Aditya Mhatre",
+              bookedBy: (getApprovedPersonName(parsed.bookedBy) as ApprovedPerson) || ApprovedPerson.ADITYA_MHATRE,
               advancePaymentInfo: {
                 advanceReceived: parsed.advancedPaymentReceived === "true" || parsed.advancePaymentInfo?.advanceReceived === true,
                 amount: parseInt(parsed.advancedPaymentAmount || parsed.advancePaymentInfo?.amount, 10) || 0,

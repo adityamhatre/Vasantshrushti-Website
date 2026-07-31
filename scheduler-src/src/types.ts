@@ -89,6 +89,26 @@ export enum ApprovedPerson {
   ADITYA_MHATRE = "Aditya Mhatre"
 }
 
+export function getApprovedPersonName(person: string | undefined | null): string {
+  if (!person) return "";
+  
+  // If it's one of the enum keys ("RAJESH_MHATRE", "MADHURA_MHATRE", etc.)
+  const key = person.toUpperCase().trim();
+  if (key in ApprovedPerson) {
+    return ApprovedPerson[key as keyof typeof ApprovedPerson];
+  }
+  
+  // If it's one of the enum values ("Rajesh Mhatre", "Madhura Mhatre", etc.)
+  const values = Object.values(ApprovedPerson) as string[];
+  if (values.includes(person)) {
+    return person;
+  }
+  
+  // Otherwise, clean up underscores and make title case
+  return person.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+}
+
+
 export const APPROVED_EMAILS: Record<string, ApprovedPerson> = {
   "aditya.r.mhatre@gmail.com": ApprovedPerson.ADITYA_MHATRE,
   "my.shazam.songs@gmail.com": ApprovedPerson.ADITYA_MHATRE,
