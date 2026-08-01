@@ -112,7 +112,7 @@ export const authService = {
         }
       });
 
-      client.requestAccessToken({ prompt: "consent" });
+      client.requestAccessToken({ prompt: "" });
     });
   }
 };
