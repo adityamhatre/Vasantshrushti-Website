@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { authService, type LoggedInUser } from "./services/authService";
 import { calendarService } from "./services/calendarService";
 import { type BookingDetails } from "./types";
@@ -35,6 +35,10 @@ export function App() {
   // Form Modals State
   const [bookingToEdit, setBookingToEdit] = useState<BookingDetails | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+
+  // Trigger to signal calendar views to refresh their cache/booking dots
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const forceNextFetchRef = useRef(false);
 
   // Mobile navigation state
   const [mobileScreen, setMobileScreen] = useState<MobileScreen>("calendar");
@@ -128,7 +132,10 @@ export function App() {
   };
 
   useEffect(() => {
-    fetchBookings(false);
+    const force = forceNextFetchRef.current;
+    forceNextFetchRef.current = false;
+    fetchBookings(force);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedMonth]);
 
   const handleLogin = async () => {
@@ -158,7 +165,10 @@ export function App() {
     setSelectedDate({ date, month, year });
     // Update month if selection wraps into a different month
     if (selectedMonth?.month !== month || selectedMonth?.year !== year) {
+      forceNextFetchRef.current = true;
       setSelectedMonth({ month, year });
+    } else {
+      fetchBookings(true);
     }
     // On mobile, navigate to bookings screen
     if (isMobile) {
@@ -201,6 +211,7 @@ export function App() {
   const handleFormSuccess = () => {
     setIsFormOpen(false);
     fetchBookings(true);
+    setRefreshTrigger(prev => prev + 1);
     if (isMobile) {
       setMobileScreen("bookings");
     }
@@ -370,6 +381,7 @@ export function App() {
               onMonthSelect={handleMonthSelect}
               selectedDate={selectedDate}
               selectedMonth={selectedMonth}
+              refreshTrigger={refreshTrigger}
             />
           </section>
 
@@ -381,9 +393,15 @@ export function App() {
               selectedDate={selectedDate}
               selectedMonth={selectedMonth}
               onEdit={handleFormOpenForEdit}
-              onDeleteSuccess={() => fetchBookings(true)}
+              onDeleteSuccess={() => {
+                fetchBookings(true);
+                setRefreshTrigger(prev => prev + 1);
+              }}
               onCreateNew={handleFormOpenForCreate}
-              onRefresh={() => fetchBookings(true)}
+              onRefresh={() => {
+                fetchBookings(true);
+                setRefreshTrigger(prev => prev + 1);
+              }}
             />
           </section>
         </main>
@@ -402,6 +420,7 @@ export function App() {
                 onMonthSelect={handleMonthSelect}
                 selectedDate={selectedDate}
                 selectedMonth={selectedMonth}
+                refreshTrigger={refreshTrigger}
               />
             </section>
           </div>
@@ -433,9 +452,15 @@ export function App() {
                 selectedDate={selectedDate}
                 selectedMonth={selectedMonth}
                 onEdit={handleFormOpenForEdit}
-                onDeleteSuccess={() => fetchBookings(true)}
+                onDeleteSuccess={() => {
+                  fetchBookings(true);
+                  setRefreshTrigger(prev => prev + 1);
+                }}
                 onCreateNew={handleFormOpenForCreate}
-                onRefresh={() => fetchBookings(true)}
+                onRefresh={() => {
+                  fetchBookings(true);
+                  setRefreshTrigger(prev => prev + 1);
+                }}
               />
             </section>
           </div>
