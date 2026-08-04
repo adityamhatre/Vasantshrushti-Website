@@ -107,7 +107,7 @@ export function App() {
         const today = new Date();
         const initialMonth = { month: today.getMonth() + 1, year: today.getFullYear() };
         setSelectedMonth(initialMonth);
-        setSelectedDate({ date: today.getDate(), month: initialMonth.month, year: initialMonth.year });
+        setSelectedDate(null);
       }
       setLoadingUser(false);
     };
@@ -147,7 +147,7 @@ export function App() {
       
       const today = new Date();
       setSelectedMonth({ month: today.getMonth() + 1, year: today.getFullYear() });
-      setSelectedDate({ date: today.getDate(), month: today.getMonth() + 1, year: today.getFullYear() });
+      setSelectedDate(null);
     } catch (err: any) {
       setAuthError(err.message || "Failed to authorize with Google");
     }
